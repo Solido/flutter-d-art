@@ -9,10 +9,8 @@ class Colored extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final simplex = v.SimplexNoise();
-
-    canvas.drawPaint(Paint()..color = Colors.black87);
-
     final frames = 200;
+    canvas.drawPaint(Paint()..color = Colors.black87);
 
     for (double i = 10; i < frames; i += .1) {
       canvas.translate(i % .3, i % .6);
@@ -28,7 +26,6 @@ class Colored extends CustomPainter {
             ..blendMode = BlendMode.screen
             ..color =
                 Colors.blue.withRed(i.toInt() * 20 % 11).withOpacity(i / 850));
-
       final int tailFibers = (i * 1).toInt();
       for (double d = 0; d < area.width; d += tailFibers) {
         for (double e = 0; e < area.height; e += tailFibers) {
@@ -40,9 +37,9 @@ class Colored extends CustomPainter {
               tailWidth,
               Paint()
                 ..color = Colors.red.withOpacity(.4)
-                ..isAntiAlias = false
+                ..isAntiAlias = true
                 ..imageFilter = ImageFilter.blur(sigmaX: tail, sigmaY: 0)
-                ..filterQuality = FilterQuality.low
+                ..filterQuality = FilterQuality.high
                 ..blendMode = BlendMode.screen);
         }
       }
